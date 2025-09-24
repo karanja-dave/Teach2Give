@@ -10,14 +10,14 @@ Each skill has its own folder that contains both **basic/fundamental starter cod
 teach2Give/
 │
 ├── Skill-1/
-│   ├── basics/              # Fundamental exercises & starter files
-│   └── mini-projects/       # Applied projects
-│       ├── project-1/
-│       └── project-2/
+│ ├── basics/ # Fundamental exercises & starter files
+│ └── mini-projects/ # Applied projects
+│ ├── project-1/
+│ └── project-2/
 │
 ├── Skill-2/
-│   ├── basics/
-│   └── mini-projects/
+│ ├── basics/
+│ └── mini-projects/
 │
 └── README.md
 ---
