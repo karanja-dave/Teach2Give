@@ -1,0 +1,32 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "nodenext", //elewa hii pia
+    "target": "es2022", //compiler for the TS
+    "rootDir": "./src", //defines where outputs go
+    "moduleResolution": "nodenext", //controls how modules are found (removes issues of linking with external files./modules)
+    "outDir": "./dist", //stores JS files after compilation of TS files
+    "esModuleInterop": true, //JS has 2 module systems, CommonJS (CJS) and ECMAScript Modules (ESM)
+                             // the argument allows you to use ESM syntax even for libraries written in CJS syntax
+    "strict": true,  //rudi elewa hii
+    "forceConsistentCasingInFileNames": true, //enforces case sensitivity in file names
+                                              //RSN: files systems are insensitive in windows and mac but case sensitive in linux
+    
+    "skipLibCheck": true,
+  },
+
+  "include": [ //tells TS dir whose files should be compiled
+    "src/**/*"  
+  ],
+
+  "exclude": [ //tells TS dir whose files shld  be ignored in compilation 
+    "node_modules",
+    "dist"
+  ]
+}
