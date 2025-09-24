@@ -7,7 +7,7 @@ Each skill has its own folder that contains both **basic/fundamental starter cod
 
 ##  Repository Structure
 
-teach2Give/
+``teach2Give/
 │
 ├── Skill-1/
 │ ├── basics/ # Fundamental exercises & starter files
@@ -19,7 +19,7 @@ teach2Give/
 │ ├── basics/
 │ └── mini-projects/
 │
-└── README.md
+└── README.md``
 ---
 
 - **basics folder** → contains practice code, small snippets, and starter files used to understand the fundamentals of each skill.  
