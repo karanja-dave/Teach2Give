@@ -23,5 +23,5 @@ specialTypes()
 
 objectArray()
 
-myInterface()
+myInterface() 
 
