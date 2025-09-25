@@ -1,5 +1,7 @@
-import specialTypes from "./specialtypes"
-import variables from "./variables" 
+import specialTypes from "./2-specialtypes"
+import variables from "./1-variables" 
+import objectArray from "./3-objects-arrays"
+import myInterface from "./4.interface"
 
 
 console.log("Hello World")
@@ -17,6 +19,9 @@ console.log(sum(2,4))
 
 variables()
 
-specialTypes
+specialTypes()
 
+objectArray()
+
+myInterface()
 
