@@ -1,4 +1,4 @@
-# teach2Give
+# Teach2Give
 
 This repository documents my learning journey across different technical skills.  
 Each skill has its own folder that contains both **basic/fundamental starter codes** and **mini-projects** to demonstrate what I’ve learned.  
