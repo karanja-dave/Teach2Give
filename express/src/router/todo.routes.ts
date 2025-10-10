@@ -10,8 +10,8 @@ import * as todoController from '../controllers/todo.controllers' //import all f
 
 
 const todoRoutes=(app:Express)=>{ //defines a fun that takes the Express app as an argument and attaches routes to the existing app from index.ts.
-    app.get('/alltodos',todoController.getAllTodosontroller)
-    app.post('/addtodo',todoController.AddTodoController)
+    app.get('/alltodos',todoController.getTodos)
+    app.post('/addtodo',todoController.createTodo)
 }
 
 export default todoRoutes //allows us to import  this fun to other modules
