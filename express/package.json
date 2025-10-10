@@ -13,12 +13,16 @@
   "license": "ISC",
   "packageManager": "pnpm@10.18.1",
   "devDependencies": {
-    "@types/express": "github:types/express",
+    "@types/express": "^5.0.3",
+    "@types/mssql": "^9.1.8",
     "@types/node": "^24.7.0",
+    "mssql": "^12.0.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mssql": "^12.0.0"
   }
 }
