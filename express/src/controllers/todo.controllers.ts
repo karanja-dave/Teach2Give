@@ -33,6 +33,7 @@ export const getTodoById = async (req:Request,res:Response) => {
     const id= parseInt(req.params.id)
     try {
         const todo = await todoServices.getTodo(id)
+        // controller is handling logic-checks if todo item is in DB
         if(todo){
             res.status(200).json(todo) //return the todo
         }else{
