@@ -26,3 +26,13 @@ export const createTodo = async(newtodo:any)=>{
 
 
 }
+
+// get todo by id 
+export const getTodoById=async(id:number)=>{
+    const pool= await getPool();
+    const result = await pool
+    .request()
+    .input('id',id)
+    .query('SELECT *FROM Todos WHERE todoid=@id')
+    return result.recordset[0]
+}

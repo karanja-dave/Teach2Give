@@ -8,3 +8,5 @@ export const listTodos = async()=> await todoRepositories.getAllTodos()
 
 //add todos
 export const createTodo=async(newtodo:any)=>await todoRepositories.createTodo(newtodo)
+
+export const getTodo= async(id:number) => await todoRepositories.getTodoById(id);

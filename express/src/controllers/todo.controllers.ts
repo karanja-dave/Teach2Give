@@ -27,3 +27,20 @@ export const createTodo =async(req:Request,res:Response)=>{
         
     }
 }
+
+// get todo by id 
+export const getTodoById = async (req:Request,res:Response) => {
+    const id= parseInt(req.params.id)
+    try {
+        const todo = await todoServices.getTodo(id)
+        if(todo){
+            res.status(200).json(todo) //return the todo
+        }else{
+            res.status(404).json({message:"Todo not found"})
+        }
+    } catch (error) {
+        res.status(500).json({error:"Internal Server error"})
+        
+        
+    }
+}
