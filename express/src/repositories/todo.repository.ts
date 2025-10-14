@@ -1,16 +1,17 @@
 
 // import defined functions exported from other modules 
 import { getPool } from "../db/config";
+import { NewTodo, UpdateTodo,Todo } from "../types/todo.types";
 
 // get all todos 
-export const getAllTodos = async()=>{
+export const getAllTodos = async():Promise<Todo[]> =>{
     const pool = await getPool() //await db connection to open
     const results = await pool.request().query('SELECT *FROM Todos')
     return results.recordset
 }
 
 //create new todo
-export const createTodo = async(newtodo:any)=>{
+export const createTodo = async(newtodo:NewTodo)=>{
     const pool= await getPool(); //connect to DB
         await pool
         .request() //create a ne sqql request
@@ -28,7 +29,7 @@ export const createTodo = async(newtodo:any)=>{
 }
 
 // get todo by id 
-export const getTodoById=async(id:number)=>{
+export const getTodoById=async(id:number):Promise<Todo>=>{
     const pool= await getPool();
     const result = await pool
     .request()
@@ -48,7 +49,7 @@ export const deleteTodo =async(id:number)=>{
 }
 
 // put -update todo 
-export const updateTodo = async(id:number,todo:any)=>{
+export const updateTodo = async(id:number,todo:UpdateTodo)=>{
     const pool = await getPool();
     await pool.request()
         .input('id',id)

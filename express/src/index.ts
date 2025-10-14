@@ -23,7 +23,7 @@ app.get('/',(req,res)=>{ //since the req arg is not used replace it with an unde
     res.send("Hello, the express server is up and running")
 })
 
-// register routes
+// register routes :define routes
 todoRoutes(app) //pass the app object to todoRoutes so that it can attach its routes
 
 
