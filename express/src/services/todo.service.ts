@@ -1,6 +1,7 @@
 
 
 // import defined functions imported from other modules 
+import { error } from 'console'
 import *as todoRepositories from '../repositories/todo.repository'
 
 // get all todos
@@ -10,9 +11,39 @@ export const listTodos = async()=> await todoRepositories.getAllTodos()
 export const createTodo=async(newtodo:any)=>await todoRepositories.createTodo(newtodo)
 
 export const getTodo= async(id:number) => { //handling logics in the service 
+    // bad requests 
+    if (isNaN(id)){
+        throw new Error('Invalid todoid')
+    }
     const existingtodo = await todoRepositories.getTodoById(id)
     if(!existingtodo){
         throw new Error('Todo not found')
     }
     return existingtodo;
 }
+
+// delete todo 
+export const deleteTodo = async(id:number)=> {
+    // bad requests 
+    if (isNaN(id)){
+        throw new Error('Invalid todoid')
+    }
+    const existingtodo = await todoRepositories.getTodoById(id)
+    if(!existingtodo){
+        throw new Error('Todo not found')
+    }
+    return await todoRepositories.deleteTodo(id);
+}
+
+// update todo 
+ export const updateTodo =async(id:number,todo:any)=>{
+    // bad requests 
+    if (isNaN(id)){
+        throw new Error('Invalid todoid')
+    }
+    const existingtodo = await todoRepositories.getTodoById(id)
+    if(!existingtodo){
+        throw new Error('Todo not found')
+    }
+    return await todoRepositories.updateTodo(id,todo);
+ }

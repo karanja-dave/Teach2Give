@@ -36,3 +36,26 @@ export const getTodoById=async(id:number)=>{
     .query('SELECT *FROM Todos WHERE todoid=@id')
     return result.recordset[0]
 }
+
+// delete todo 
+export const deleteTodo =async(id:number)=>{
+    const pool = await getPool();
+    await pool
+    .request()
+    .input('id',id)
+    .query('DELETE FROM Todos WHERE todoid=@id')
+    return
+}
+
+// put -update todo 
+export const updateTodo = async(id:number,todo:any)=>{
+    const pool = await getPool();
+    await pool.request()
+        .input('id',id)
+        .input('todo_name',todo.todo_name)
+        .input('description',todo.description)
+        .input('due_date',todo.due_date)
+        .input('user_id',todo.user_id)
+        .query('UPDATE Todos Set todo_name=@todo_name, description=@description, due_date=@due_date, user_id=@user_id WHERE todoid=@id')
+    return{message:'Todo updated successfully'}
+}
