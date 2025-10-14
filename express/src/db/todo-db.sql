@@ -4,16 +4,17 @@ CREATE TABLE Users (
     first_name VARCHAR(40) NOT NULL,
     last_name VARCHAR(40) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    phone_number VARCHAR(15)
-);
+    phone_number VARCHAR(15),
+    password VARCHAR(max) NOT NULL
+    );
 
 -- Sample data -insert data to the created table 
-INSERT INTO Users (first_name, last_name, email, phone_number) VALUES
-('Alice', 'Mwangi', 'alice@gmail.com', '0711000001'),
-('Brian', 'Kemboi', 'brian@gmail.com', '0711000002'),
-('Carol', 'Koech', 'carol@gmail.com', '0711000003'),
-('David', 'Mutiso', 'david@gmail.com', '0711000004'),
-('Esther', 'Wambui', 'esther@gmail.com', '0711000005');
+INSERT INTO Users (first_name, last_name, email, phone_number,password) VALUES
+('Alice', 'Mwangi', 'alice@gmail.com', '0711000001','password123'),
+('Brian', 'Kemboi', 'brian@gmail.com', '0711000002','password123'),
+('Carol', 'Koech', 'carol@gmail.com', '0711000003','password123'),
+('David', 'Mutiso', 'david@gmail.com', '0711000004','password123'),
+('Esther', 'Wambui', 'esther@gmail.com', '0711000005','password123');
 
 -- view table 
 SELECT *FROM Users

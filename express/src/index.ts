@@ -6,6 +6,7 @@ import dotenv from "dotenv"
 //load functions defined and exported from other modules
 import { getPool } from './db/config'; //load getPool function defined in config={.ts file}
 import todoRoutes from './router/todo.routes';
+import userRoutes from './router/user.routes';
 
 
 
@@ -25,6 +26,7 @@ app.get('/',(req,res)=>{ //since the req arg is not used replace it with an unde
 
 // register routes :define routes
 todoRoutes(app) //pass the app object to todoRoutes so that it can attach its routes
+userRoutes(app)
 
 
 // define a port: it is the entry point to a server
