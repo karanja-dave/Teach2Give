@@ -154,7 +154,7 @@ EXEC sp_Insert
          (''Civic'', ''Honda'', 2021, ''Black'', 6000.00, 1),
          (''Mazda3'', ''Mazda'', 2022, ''Red'', 6200.00, 1)';
 
--- ✅ Customer table 
+-- customer table 
 EXEC sp_Insert 
     @TableName = 'Customer',
     @Columns = 'first_name, last_name, email, phone_number, addresses',
@@ -163,7 +163,7 @@ EXEC sp_Insert
          (''Faith'', ''Njoki'', ''faith.njoki@email.com'', ''+254703212222'', ''Embu, Kenya'')';
 
 
--- ✅ Booking table 
+-- booking table 
 EXEC sp_Insert 
     @TableName = 'Booking',
     @Columns = 'car_id, customer_id, rental_start_date, rental_end_date, total_amount',
@@ -172,7 +172,7 @@ EXEC sp_Insert
          (3, 4, ''2025-11-01'', ''2025-11-05'', 500.00)';
 
 
--- ✅ Payment table 
+-- payment table 
 EXEC sp_Insert 
     @TableName = 'Payment',
     @Columns = 'booking_id, payment_date, amount, payment_method',
@@ -181,7 +181,7 @@ EXEC sp_Insert
          (7, ''2025-11-01'', 500.00, ''Mobile Money'')';
 
 
--- ✅ Insurance table 
+-- insurance table 
 EXEC sp_Insert 
     @TableName = 'Insurance',
     @Columns = 'car_id, insurance_provider, policy_number, startdate, enddate',
@@ -190,7 +190,7 @@ EXEC sp_Insert
          (7, ''Jubilee Insurance'', ''INS-2003'', ''2025-03-01'', ''2026-03-01'')';
 
 
--- ✅ Location table  
+-- location table  
 EXEC sp_Insert 
     @TableName = 'Location',
     @Columns = 'car_id, location_name, addresses, contact_number',
@@ -199,7 +199,7 @@ EXEC sp_Insert
          (7, ''Kericho Branch'', ''Kenyatta Ave, Kericho'', ''+254777777777'')';
 
 
--- ✅ Reservation table 
+-- reservation table 
 EXEC sp_Insert 
     @TableName = 'Reservation',
     @Columns = 'car_id, customer_id, reservation_date, pickup_date, return_date',
@@ -208,7 +208,7 @@ EXEC sp_Insert
          (4, 5, ''2025-11-05'', ''2025-11-07'', ''2025-11-10'')';
 
 
--- ✅ Maintenance table 
+-- maintenance table 
 EXEC sp_Insert 
     @TableName = 'Maintenance',
     @Columns = 'car_id, maintenance_date, descriptions, cost',
@@ -224,57 +224,51 @@ EXEC sp_Insert
 EXEC sp_Read 
     @TableName = 'Car';
 
--- ✅ Customer table 
+-- customer table 
 EXEC sp_Read @TableName = 'Customer';
-EXEC sp_Read @TableName = 'Customer', @Condition = 'addresses LIKE ''%Nairobi%''';
 
--- ✅ Booking table 
+-- booking table 
 EXEC sp_Read @TableName = 'Booking';
-EXEC sp_Read @TableName = 'Booking', @Condition = 'total_amount > 200';
 
--- ✅ Payment table 
+-- payment table 
 EXEC sp_Read @TableName = 'Payment';
-EXEC sp_Read @TableName = 'Payment', @Condition = 'payment_method = ''Cash''';
 
--- ✅ Insurance table 
+-- insurance table 
 EXEC sp_Read @TableName = 'Insurance';
-EXEC sp_Read @TableName = 'Insurance', @Condition = 'insurance_provider = ''Jubilee Insurance''';
 
--- ✅ Location table  
+-- location table  
 EXEC sp_Read @TableName = 'Location';
-EXEC sp_Read @TableName = 'Location', @Condition = 'location_name = ''Nairobi Branch''';
 
--- ✅ Reservation table 
+-- reservation table 
 EXEC sp_Read @TableName = 'Reservation';
-EXEC sp_Read @TableName = 'Reservation', @Condition = 'pickup_date > ''2025-10-01''';
 
--- ✅ Maintenance table 
+-- maintenance table 
 EXEC sp_Read @TableName = 'Maintenance';
-EXEC sp_Read @TableName = 'Maintenance', @Condition = 'cost > 100';
 
 -- view rows based on conditions 
 -- car table 
-EXEC sp_Read 
-    @TableName = 'Car',
-    @Condition = 'avail = 1'; --view all avaiable cars
-
-EXEC sp_Read 
-    @TableName = 'Car',
-    @Condition = 'manufacturer = ''Toyota'''; --view toyota cars
+EXEC sp_Read @TableName = 'Car', @Condition = 'avail = 1'; --view all avaiable cars
+EXEC sp_Read  @TableName = 'Car', @Condition = 'manufacturer = ''Toyota'''; --view toyota cars
 
 -- customer table 
-
+EXEC sp_Read @TableName = 'Customer', @Condition = 'addresses LIKE ''%Nairobi%''';
 -- booking table 
+EXEC sp_Read @TableName = 'Booking', @Condition = 'total_amount > 200';
 
 -- payment table 
+EXEC sp_Read @TableName = 'Payment', @Condition = 'payment_method = ''Cash''';
 
 -- insurance table 
+EXEC sp_Read @TableName = 'Insurance', @Condition = 'insurance_provider = ''Jubilee Insurance''';
 
 -- location table  
+EXEC sp_Read @TableName = 'Location', @Condition = 'location_name = ''Nairobi Branch''';
 
 -- reservation table 
+EXEC sp_Read @TableName = 'Reservation', @Condition = 'pickup_date > ''2025-10-01''';
 
 -- maintainace table 
+EXEC sp_Read @TableName = 'Maintenance', @Condition = 'cost > 100';
 
 
 -- update -edit existing rows 
@@ -290,18 +284,46 @@ EXEC sp_Update
     @Condition = 'car_model = ''Civic''';
 
 -- customer table 
+EXEC sp_Update 
+    @TableName = 'Customer',
+    @SetClause = 'phone_number = ''+254799999999''',
+    @Condition = 'email = ''john.doe@email.com''';
 
 -- booking table 
+EXEC sp_Update 
+    @TableName = 'Booking',
+    @SetClause = 'total_amount = 300.00',
+    @Condition = 'booking_id = 1';
 
 -- payment table 
+EXEC sp_Update 
+    @TableName = 'Payment',
+    @SetClause = 'payment_method = ''Bank Transfer''',
+    @Condition = 'payment_id = 3';
 
 -- insurance table 
+EXEC sp_Update 
+    @TableName = 'Insurance',
+    @SetClause = 'insurance_provider = ''CIC Insurance''',
+    @Condition = 'policy_number = ''INS-1001''';
 
 -- location table  
+EXEC sp_Update 
+    @TableName = 'Location',
+    @SetClause = 'contact_number = ''+254788888888''',
+    @Condition = 'location_name = ''Mombasa Branch''';
 
 -- reservation table 
+EXEC sp_Update 
+    @TableName = 'Reservation',
+    @SetClause = 'return_date = ''2025-10-07''',
+    @Condition = 'reservation_id = 1';
 
--- maintainace table 
+-- maintenance table 
+EXEC sp_Update 
+    @TableName = 'Maintenance',
+    @SetClause = 'cost = 220.00',
+    @Condition = 'descriptions = ''Battery replacement''';
 
 
 -- deleting rows 
@@ -311,22 +333,40 @@ EXEC sp_Delete
     @Condition = 'car_model = ''Corolla''';
 
 -- customer table 
+EXEC sp_Delete 
+    @TableName = 'Customer',
+    @Condition = 'email = ''brian.mwangi@email.com''';
 
 -- booking table 
+EXEC sp_Delete 
+    @TableName = 'Booking',
+    @Condition = 'booking_id = 5';
 
--- payment table 
+-- payment table -worked
+EXEC sp_Delete 
+    @TableName = 'Payment',
+    @Condition = 'payment_method = ''Cash''';
 
--- insurance table 
+-- insurance table -worked
+EXEC sp_Delete 
+    @TableName = 'Insurance',
+    @Condition = 'insurance_provider = ''APA Insurance''';
 
--- location table  
+-- location table  -worked
+EXEC sp_Delete 
+    @TableName = 'Location',
+    @Condition = 'location_name = ''Kisumu Branch''';
 
--- reservation table 
+-- reservation table -worked
+EXEC sp_Delete 
+    @TableName = 'Reservation',
+    @Condition = 'reservation_id = 2';
 
--- maintainace table 
+-- maintenance table -worked
+EXEC sp_Delete 
+    @TableName = 'Maintenance',
+    @Condition = 'descriptions = ''Tire replacement''';
 
 
 
-
-
-
-
+/* SQL Server 2017 and above edition (14.0, 15.0, 16.0, 17.0)*/
