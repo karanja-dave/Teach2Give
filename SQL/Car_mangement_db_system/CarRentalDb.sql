@@ -367,6 +367,4 @@ EXEC sp_Delete
     @TableName = 'Maintenance',
     @Condition = 'descriptions = ''Tire replacement''';
 
-
-
-/* SQL Server 2017 and above edition (14.0, 15.0, 16.0, 17.0)*/
+    
