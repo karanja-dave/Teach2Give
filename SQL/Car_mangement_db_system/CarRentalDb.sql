@@ -143,7 +143,6 @@ INSERT INTO Maintenance (car_id, maintenance_date, descriptions, cost) VALUES
 
 -- CRUD OPERATIONS 
 
-
 -- Creation: inserting new records to existing tables
 -- car table 
 EXEC sp_Insert 
@@ -221,8 +220,7 @@ EXEC sp_Insert
 -- raed - view rows in a table 
 -- view all rows 
 -- car table 
-EXEC sp_Read 
-    @TableName = 'Car';
+EXEC sp_Read @TableName = 'Car';
 
 -- customer table 
 EXEC sp_Read @TableName = 'Customer';
@@ -327,20 +325,20 @@ EXEC sp_Update
 
 
 -- deleting rows 
--- car table 
+-- car table removes car whose Id is not a foreign key in other tables
 EXEC sp_Delete 
     @TableName = 'Car',
-    @Condition = 'car_model = ''Corolla''';
+    @Condition = 'car_model = ''Mazda3''';
 
--- customer table 
+-- customer table - removes customer whose Id is not a foreign key in other tables
 EXEC sp_Delete 
     @TableName = 'Customer',
-    @Condition = 'email = ''brian.mwangi@email.com''';
+    @Condition = 'email = ''alice.mwende@email.com''';
 
--- booking table 
+-- booking table --still not working
 EXEC sp_Delete 
     @TableName = 'Booking',
-    @Condition = 'booking_id = 5';
+    @Condition = 'booking_id = 7';
 
 -- payment table -worked
 EXEC sp_Delete 
@@ -367,4 +365,8 @@ EXEC sp_Delete
     @TableName = 'Maintenance',
     @Condition = 'descriptions = ''Tire replacement''';
 
-    
+EXEC sp_Insert
+    @TableName = 'Booking',
+    @Columns = 'car_id, customer_id, rental_start_date, rental_end_date, total_amount',
+    @Values = '(1, 2, ''2025-10-20'', ''2025-10-23'', 270.00)';
+
