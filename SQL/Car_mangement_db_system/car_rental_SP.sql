@@ -1,7 +1,6 @@
 USE [carDb];
 GO
 
--- Insert SP (Supports multiple rows)
 CREATE OR ALTER PROCEDURE sp_Insert
     @TableName NVARCHAR(128),
     @Columns NVARCHAR(MAX),
@@ -13,10 +12,13 @@ BEGIN
     SET @SQL = N'INSERT INTO ' + QUOTENAME(@TableName) +
                ' (' + @Columns + ') VALUES ' + @Values + ';';
 
-    PRINT @SQL;  -- Optional, shows the final SQL for debugging
+    -- Print the SQL for debugging
+    PRINT @SQL;
+
     EXEC sp_executesql @SQL;
 END;
 GO
+
 
 
 --Read SP
