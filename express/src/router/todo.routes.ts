@@ -7,13 +7,15 @@ import { Express } from "express";
 
 //load functions defined and exported from other modules
 import * as todoController from '../controllers/todo.controllers' //import all funs in the todo.controllers.ts file
+import { isAuthenticated } from "../middleware/bearAuth";
+
 
 
 const todoRoutes=(app:Express)=>{ //defines a fun that takes the Express app as an argument and attaches routes to the existing app from index.ts.
     // retrieve all data  route
-    app.get('/todos',todoController.getTodos)
+    app.get('/todos', isAuthenticated, todoController.getTodos)
     // add data route 
-    app.post('/todos',todoController.createTodo)
+    app.post('/todos', isAuthenticated, todoController.createTodo)
     // get todo record by id 
     app.get('/todos/:id',todoController.getTodoById)
 

@@ -25,9 +25,7 @@ export const createUser = async (user: NewUser) => {
         user.password = await bcrpt.hash(user.password,10) //we carry out 10 salt rounds
         console.log("hashed password",user.password) //print the hashed password on console log
     }
-
-
-
+    
     return await userRepositories.createUser(user);
 }
 
@@ -77,6 +75,7 @@ export const loginUser = async (email:string, password:string)=>{
         sub:user.userid, //should be a unique variable in the DB hence user_id
         first_name:user.first_name,
         last_name:user.last_name,
+        role:user.role, //critical for role based authentication
         exp:Math.floor(Date.now() / 1000+60*60) //token expires after 1 hour
     }
 

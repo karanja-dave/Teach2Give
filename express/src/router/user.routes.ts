@@ -1,6 +1,7 @@
 
 import { Express } from "express";
 import * as userController from "../controllers/user.controllers";
+import { isAuthenticated } from "../middleware/bearAuth";
 
 const userRoutes = (app: Express) => {
     app.get("/users", userController.getAllUsers);

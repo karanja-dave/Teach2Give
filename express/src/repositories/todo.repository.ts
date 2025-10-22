@@ -16,7 +16,7 @@ export const createTodo = async(newtodo:NewTodo)=>{
         await pool
         .request() //create a ne sqql request
 
-        // take client inouts as parameters to avoid SQL penetration 
+        // input() safley passes users input as parameters to SQL query to avoid penetration 
         .input('todo_name',newtodo.todo_name)
         .input('description',newtodo.description)
         .input('due_date', newtodo.due_date)

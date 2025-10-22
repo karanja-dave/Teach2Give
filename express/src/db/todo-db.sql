@@ -5,7 +5,8 @@ CREATE TABLE Users (
     last_name VARCHAR(40) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone_number VARCHAR(15),
-    password VARCHAR(max) NOT NULL
+    password VARCHAR(max) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user'
     );
 
 -- Sample data -insert data to the created table 
