@@ -9,7 +9,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(200).json(users);
     } catch (error: any) {
         res.status(500).json({ error: error.message });
-    }
+    } //error.message returns the actual error encountered unlike the generic error message we use 'Internal Server Error'
 }
 
 //get user by id    

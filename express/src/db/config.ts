@@ -14,7 +14,7 @@ const{
     SQL_PWD,
     SQL_DB,
     PORT
-}=process.env
+}=process.env //process.env is an object that holds all enviroment variables 
 
 /**
  * the above code(line 9-15) is shorthand for :
@@ -35,7 +35,7 @@ assert(SQL_DB,"SQL_DB required")
 
 // configuration object for DataBase connection 
 
-export const config={ //createt and export the config object
+export const config={ //create and export the config object
     port:PORT,
     sqlConfig:{ //define credentials required to connect to DataBase (mssql)
         user:SQL_USER,
@@ -60,7 +60,7 @@ export const config={ //createt and export the config object
 export const getPool =async () => { //create and export the getPool function
 
     try{//handles what happens on succesful connectionc
-        const pool = await sql.connect(config.sqlConfig) //connect to SQL server ans store the active connection in the pool object
+        const pool = await sql.connect(config.sqlConfig) //connect to SQL server and store the active connection in the pool object
         return pool; //return the pool object on succesfull connection that store the active connection 
 
     } catch(error) {//hanldes what happens on error encounter

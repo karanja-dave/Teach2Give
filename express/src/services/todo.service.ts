@@ -11,6 +11,7 @@ export const listTodos = async()=> await todoRepositories.getAllTodos()
 //add todos
 export const createTodo=async(newtodo:NewTodo)=>await todoRepositories.createTodo(newtodo)
 
+// get todo by id 
 export const getTodo= async(id:number) => { //handling logics in the service 
     // bad requests 
     if (isNaN(id)){
