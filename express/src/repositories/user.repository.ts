@@ -50,7 +50,9 @@ export const updateUser = async (id: number, user: UpdateUser) => {
         .input('first_name', user.first_name)
         .input('last_name', user.last_name)
         .input('phone_number', user.phone_number)
-        .query('UPDATE Users SET first_name = @first_name, last_name = @last_name, phone_number = @phone_number WHERE userid = @id');
+        .input('password',user.password)
+        .input('role',user.role)
+        .query('UPDATE Users SET first_name = @first_name, last_name = @last_name, phone_number = @phone_number, password= @password, role= @role WHERE userid = @id');
     return { message: 'User updated successfully' };
 }
 

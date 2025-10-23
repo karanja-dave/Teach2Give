@@ -36,6 +36,11 @@ export const updateUser = async (id: number, user: UpdateUser) => {
         throw new Error('Inavlid userid')
     }
     await ensureUserExists(id);
+    // hash updated passwords 
+    if(user.password){
+        user.password = await bcrpt.hash(user.password,10) //we carry out 10 salt rounds
+        console.log("hashed password",user.password) //print the hashed password on console log
+    }
     return await userRepositories.updateUser(id, user);
 }
 // export const deleteUser = async (id: number) => await userRepositories.deleteUser(id);
@@ -79,7 +84,7 @@ export const loginUser = async (email:string, password:string)=>{
         exp:Math.floor(Date.now() / 1000+60*60) //token expires after 1 hour
     }
 
-    // genertae a token 
+    // generate a token 
     const secret= process.env.JWT_SECRET as string
     if(!secret) throw new Error('JwT is not defind')
     
