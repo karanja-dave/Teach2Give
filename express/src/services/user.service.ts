@@ -4,6 +4,7 @@ import { NewUser, UpdateUser } from '../types/user.types';
 import jwt from 'jsonwebtoken'
 import bcrpt from 'bcrypt'
 import dotenv from 'dotenv'
+import { sendEmail } from '../mailer/mailer';
 
 
 dotenv.config() //loads all variables in the .env  file
@@ -25,8 +26,21 @@ export const createUser = async (user: NewUser) => {
         user.password = await bcrpt.hash(user.password,10) //we carry out 10 salt rounds
         console.log("hashed password",user.password) //print the hashed password on console log
     }
+    // save new user to DB 
+    const result = await userRepositories.createUser(user);
+
+    // send welcome email to user 
     
-    return await userRepositories.createUser(user);
+    await sendEmail(
+        user.email,
+        'Welcome to Todo App',
+        `<div>
+        <h2> Welcome ${user.first_name},</h2>
+        <p> Thankyou for registering with our Todo App. We are excited to have you </p>
+        </div>
+        `
+    )
+    
 }
 
 //export const updateUser = async (id: number, user: any) => await userRepositories.updateUser(id, user);
