@@ -9,6 +9,7 @@ const userRoutes = (app: Express) => {
     app.put("/users/:id", userController.updateUser);
     app.delete("/users/:id", userController.deleteUser);
     app.post("/login",userController.loginUser)
+    app.post("/verify", userController.verifyUser)
 }
 
 export default userRoutes;

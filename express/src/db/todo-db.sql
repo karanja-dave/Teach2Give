@@ -8,7 +8,10 @@ CREATE TABLE Users (
     password VARCHAR(max) NOT NULL,
     role VARCHAR(20) DEFAULT 'user'
     );
-
+-- added new columns to user table 
+ALTER TABLE Users
+ADD verification_code VARCHAR(10),
+    is_verified BIT DEFAULT 0;
 -- Sample data -insert data to the created table 
 INSERT INTO Users (first_name, last_name, email, phone_number,password) VALUES
 ('Alice', 'Mwangi', 'alice@gmail.com', '0711000001','password123'),

@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import bcrpt from 'bcrypt'
 import dotenv from 'dotenv'
 import { sendEmail } from '../mailer/mailer';
+import { emailTemplate } from '../mailer/emailTemplate';
 
 
 dotenv.config() //loads all variables in the .env  file
@@ -28,19 +29,40 @@ export const createUser = async (user: NewUser) => {
     }
     // save new user to DB 
     const result = await userRepositories.createUser(user);
+    // generate random verification code 
+    const verifcationCode = Math.floor(100000 + Math.random() * 900000).toString() //random code is between 100-900k 
 
-    // send welcome email to user 
-    
+    await userRepositories.setVerificationCode(user.email,verifcationCode)
+
+    // send verification code via email 
     await sendEmail(
         user.email,
-        'Welcome to Todo App',
-        `<div>
-        <h2> Welcome ${user.first_name},</h2>
-        <p> Thankyou for registering with our Todo App. We are excited to have you </p>
-        </div>
-        `
+        'Verify your Email for Todo App',
+        emailTemplate.verify(user.first_name,verifcationCode)
     )
-    
+
+    return {message:'User created successfully. Verifcation code sent to EMail.'}
+}
+
+// verification of new users 
+export const verifyUser = async (email:string,code:string)=>{
+    const user= await userRepositories.getUserByEmail(email) //check if user exists using their email
+
+    if(!user){
+        throw new Error('User not found')
+    }
+    if(user.verification_code !== code){
+        throw new Error('Invalid verification code');
+    }
+    await userRepositories.verifyUser(email)
+
+    // send email to tell them they are verified 
+    await sendEmail(
+        user.email,
+        'Your Email has been verified - Todo App',
+        emailTemplate.verifiedSuccess(user.first_name)
+    )
+    return {message:"User verified successfully"}
 }
 
 //export const updateUser = async (id: number, user: any) => await userRepositories.updateUser(id, user);

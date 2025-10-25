@@ -6,6 +6,8 @@ export interface User {
     phone_number: string;
     password:string;
     role:string;
+    is_verified?:boolean;
+    verification_code?:string|null;
 }
 
 export interface NewUser {
