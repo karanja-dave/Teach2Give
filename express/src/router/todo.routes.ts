@@ -12,9 +12,9 @@ import { adminOnly,userOnly,adminUser } from "../middleware/bearAuth";
 
 const todoRoutes=(app:Express)=>{ //defines a fun that takes the Express app as an argument and attaches routes to the existing app from index.ts.
     // retrieve all data  route
-    app.get('/todos',adminOnly, todoController.getTodos)
+    app.get('/todos', todoController.getTodos)
     // add data route 
-    app.post('/todos', adminOnly, todoController.createTodo)
+    app.post('/todos', todoController.createTodo)
     // get todo record by id 
     app.get('/todos/:id', adminUser,todoController.getTodoById)
 
