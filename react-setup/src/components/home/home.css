@@ -1,0 +1,30 @@
+/* Styles for the Home component */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    border-bottom: 2px solid #dcd950;
+}
+
+.home-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.home-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 700px;
+}
+
+.home-image {
+    width: 50%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
