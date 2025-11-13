@@ -1,8 +1,10 @@
 import taskManager from '../../assets/images/tasks-manager.png'
+import { Navbar } from '../nav/Navbar'
 
 export const About = () => {
   return (
     <div>
+      <Navbar/>
         <div>
             <img src={taskManager} alt="Task manager image" />
         </div>

@@ -1,9 +1,12 @@
+
 import './App.css'
 import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 import { LandingPage } from './components/LandingPage'
-import { About } from './components/about/About'
 import { Error } from './components/Error'
+import { About } from './components/about/About'
+import { Register } from './components/regiseter/Register'
+import { Login } from './components/login/Login'
 
 function App() {
   const router =createBrowserRouter([
@@ -18,11 +21,11 @@ function App() {
     },
     {
       path:'/register',
-      element: <h1>Welcome to Register page</h1>
+      element: <Register/>
     },
     {
       path:'/login',
-      element: <h1>Welcome to Login page</h1>
+      element: <Login/>
     },
     {
       path:'*', //handling non-existing routes
