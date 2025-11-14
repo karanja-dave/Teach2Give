@@ -23,6 +23,7 @@ INSERT INTO Users (first_name, last_name, email, phone_number,password) VALUES
 -- view table 
 SELECT *FROM Users
 
+-- DELETE FROM Users WHERE userid=1012
 ---todos table
 CREATE TABLE Todos (
     todoid INT IDENTITY(1,1) PRIMARY KEY,
