@@ -14,7 +14,7 @@ export const Events = () => {
       console.log("I am submitting....");
       if(name){
         console.log(`Registering an attendee: ${name}`);
-        setAttende([...attendees,name]) //appends new name below the list 
+        setAttende([...attendees,name]) //appends new name below the list  
         setName("") //clears input field after adding name to list
       }
     }
