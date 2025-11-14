@@ -2,10 +2,10 @@
 import './App.css'
 import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
-import { LandingPage } from './components/LandingPage'
+import { LandingPage } from './components/pages/LandingPage'
 import { Error } from './components/Error'
 import { About } from './components/about/About'
-import { Register } from './components/regiseter/Register'
+import { Register } from './components/register/Register'
 import { Login } from './components/login/Login'
 
 function App() {
