@@ -13,7 +13,7 @@ export const Navbar = () => {
    <div className="navbar bg-base-100 shadow-sm">
     <div className="navbar-start">
       <div className="dropdown">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle md:hidden">
           {/* bar icon  */}
         <HiBars4/>
         </div>
@@ -27,7 +27,8 @@ export const Navbar = () => {
         </ul>
       </div>
     </div>
-    <div className="navbar-center">
+    {/* hide navbar in small screens  */}
+    <div className="navbar-center hidden md:flex">
       <ul
           tabIndex={-1}
           className="menu menu-horizontal dropdown-content bg-base-100 rounded-box z-1 mt-3 p-2 shadow">
@@ -36,7 +37,7 @@ export const Navbar = () => {
             <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         </ul>
     </div>
-    <div className="navbar-end">
+    <div className="navbar-end hidden md:flex">
       <ul
           tabIndex={-1}
           className="menu menu-horizontal dropdown-content bg-base-100 rounded-box z-1 mt-3 p-2 shadow">
