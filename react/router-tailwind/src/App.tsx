@@ -4,9 +4,10 @@ import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 import { LandingPage } from './components/pages/LandingPage'
 import { Error } from './components/Error'
-import { Register } from './components/register/Register'
-import { Login } from './components/login/Login'
+import { Register } from './components/auth/Register'
+import { Login } from './components/auth/Login'
 import { AboutPage } from './components/pages/AboutPage'
+import { Verification } from './components/auth/Verification'
 
 function App() {
   const router =createBrowserRouter([
@@ -26,6 +27,10 @@ function App() {
     {
       path:'/login',
       element: <Login/>
+    },
+    {
+      path: '/verify',
+      element: <Verification/>
     },
     {
       path:'*', //handling non-existing routes
