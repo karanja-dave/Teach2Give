@@ -16,7 +16,7 @@ const schema = yup.object({
 });
 
 export const Verification = () => {
-
+  // What is happening here?
   const{
     register,
     handleSubmit,
@@ -35,7 +35,7 @@ export const Verification = () => {
     <div className="flex justify-center items-center min-h-screen bg-base-200">
       <div className="w-full max-w-lg p-8 rounded-xl shadow-lg bg-white">
         <h1 className="text-3xl font-bold mb-6 text-center">Account Verification</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4"> {/*get explanation of onSubmit*/}
           {/* email input  */}
           <input 
             type="email" 

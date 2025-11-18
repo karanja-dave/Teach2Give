@@ -1,6 +1,6 @@
 // the navbar is used to link our app to different views 
 
-import logo from '../../assets/images/logo.png'
+// import logo from '../../assets/images/logo.png'
 
 import  {NavLink} from 'react-router'
 import { HiBars4 } from "react-icons/hi2";
