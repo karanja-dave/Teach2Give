@@ -3,6 +3,8 @@ import {useForm, type SubmitHandler} from 'react-hook-form'
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { userApi } from "../../features/auth/userAPI"
+import { toast } from "sonner"
+import { useNavigate } from "react-router"
 
 // types 
 type RegisterInputs={
@@ -32,8 +34,9 @@ const schema = yup.object({
 
 
 export const Register = () => {
+  const navigate = useNavigate()
   // recreate what createuser from userAPI does 
-  const [createUser] =userApi.useCreateUsersMutation()
+  const [createUser, {isLoading}] =userApi.useCreateUsersMutation()
   const{
     register, //will be use to register every field
     handleSubmit,
@@ -47,8 +50,17 @@ export const Register = () => {
     try {
       const response = await createUser(data).unwrap()
       console.log("Response",response);
-    } catch (error) {
+      toast.success(response.message)
+
+      // redirect user to verifictaion after succesfull registeration 
+      setTimeout(()=>{
+        navigate('/verify',{
+          state:{email:data.email} //carries the email to the verification page 
+        })
+      },2000) //delay of 2seconds for toast to appear before redirection 
+    } catch (error:any) {
       console.log("Error",error);
+      toast.error(error.data.message)
     }
   }
   return (
@@ -140,7 +152,17 @@ export const Register = () => {
             }
             
 
-            <button type="submit" className="btn btn-primary w-full mt-4">Register</button>
+            <button type="submit" className="btn btn-primary w-full mt-4" disabled={isLoading}>
+
+          {
+            isLoading?(
+              <>
+              <span className="loading loading-spinner text-primary"/>Please Wait...
+
+              </>
+            ):"Register"
+          }
+         </button>
           </form>
         </div>
     </div>
