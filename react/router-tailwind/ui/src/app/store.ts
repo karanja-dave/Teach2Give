@@ -4,6 +4,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import storage from "redux-persist/es/storage";
 import { userApi } from "../features/auth/userAPI"
 import { persistReducer, persistStore } from "redux-persist"
+import { loginAPI } from "../features/auth/loginAPI";
 
 
 const persistConfig ={
@@ -14,7 +15,8 @@ const persistConfig ={
 
 // combine all reducers into 1 route 
 const rootReducer = combineReducers({
-    [userApi.reducerPath]:userApi.reducer
+    [userApi.reducerPath]:userApi.reducer,
+    [loginAPI.reducerPath]:loginAPI.reducer
 })
 
 
@@ -28,6 +30,7 @@ export const store = configureStore({
     })
     .concat(userApi.middleware)
     //concat other middlewares below
+    .concat(loginAPI.middleware)
  })
 
  export const persistedStore = persistStore(store)

@@ -2,6 +2,8 @@ import { Navbar } from "../nav/Navbar"
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
+import { loginAPI } from "../../features/auth/loginAPI"
+import { toast } from "sonner"
 
 // define types  
 type LoginInputs={
@@ -16,7 +18,7 @@ const schema = yup.object({
 });
 
 export const Login = () => {
-
+  const [loginUser,{isLoading}]=loginAPI.useLoginUserMutation()
   const{
     register,
     handleSubmit,
@@ -26,8 +28,16 @@ export const Login = () => {
   })
 
   // define submit function 
-  const onSubmit: SubmitHandler<LoginInputs>=(data)=>{
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginInputs>=async(data)=>{
+    try {
+      const response = await loginUser(data).unwrap()
+      // console.log(response);
+      toast.success(response.message)
+    } catch (error:any) {
+      // console.log(error);
+      toast.error(error.data.error)
+    }
+    
   }
   return (
     <>
@@ -63,7 +73,17 @@ export const Login = () => {
           )
          }
 
-         <button type="submit" className="btn btn-primary w-full mt-4">Register</button>
+         <button type="submit" className="btn btn-primary w-full mt-4" disabled={isLoading}>
+
+          {
+            isLoading?(
+              <>
+              <span className="loading loading-spinner text-primary"/>Signing in...
+
+              </>
+            ):"Sign in"
+          }
+         </button> 
         </form>
     </div>
     </div>

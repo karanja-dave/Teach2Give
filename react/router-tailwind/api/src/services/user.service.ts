@@ -137,7 +137,8 @@ export const loginUser = async (email:string, password:string)=>{
             FN:user.first_name,
             LN:user.last_name,
             email:user.email,
-            PN:user.phone_number
+            PN:user.phone_number,
+            role:user.role
 
 
         }
