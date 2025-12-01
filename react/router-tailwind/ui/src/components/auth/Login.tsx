@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { loginAPI } from "../../features/auth/loginAPI"
 import { toast } from "sonner"
+import { useDispatch} from "react-redux"
+import { loginSuccess } from "../../features/auth/userSlice"
+import { useNavigate } from "react-router"
 
 // define types  
 type LoginInputs={
@@ -18,6 +21,8 @@ const schema = yup.object({
 });
 
 export const Login = () => {
+  const dispatch= useDispatch()
+  const navigate = useNavigate()
   const [loginUser,{isLoading}]=loginAPI.useLoginUserMutation()
   const{
     register,
@@ -33,6 +38,17 @@ export const Login = () => {
       const response = await loginUser(data).unwrap()
       // console.log(response);
       toast.success(response.message)
+      // dispatch-sttore user info  on successful login
+      dispatch(loginSuccess(response)) //performs actions of loginSuccess from userSlice where it will store the token&user
+
+      // define if stament to ensure roles are redirected to respective dashboards 
+      if(response.user.role==='admin'){
+        navigate('/admin/dashboard/todos')
+      }else if(response.user.role==='user'){
+        navigate('/user/dashboard/todos')
+      }
+
+
     } catch (error:any) {
       // console.log(error);
       toast.error(error.data.error)

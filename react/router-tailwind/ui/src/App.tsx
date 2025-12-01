@@ -9,8 +9,14 @@ import { Login } from './components/auth/Login'
 import { AboutPage } from './components/pages/AboutPage'
 import { Verification } from './components/auth/Verification'
 import { Toaster } from 'sonner'
+import { AdminDashboard } from './dashboard/AdminDashboard/content/AdminDashboard'
+import { UserDashboard } from './dashboard/UserDashboard/content/UserDashboard'
+import { useSelector } from 'react-redux'
+import type { RootState } from './app/store'
 
 function App() {
+  const isAdmin = useSelector((state:RootState)=>state.user.user?.role==='admin')
+  const isUser = useSelector((state:RootState)=>state.user.user?.role==='user')
   const router =createBrowserRouter([
     // define routes here 
     {
@@ -36,7 +42,49 @@ function App() {
     {
       path:'*', //handling non-existing routes
       element: <Error/>
+    },
+    // admin dashboard 
+    {
+      path:"/admin/dashboard",
+      element: isAdmin? <AdminDashboard/>:<Login/>, //restrict only admins to access admin dashboard
+      children:[ //extensions in the dashboard 
+          {
+            path:"todos",
+            element: <h1>Our Todos</h1>
+          },
+          {
+            path:"users",
+            element: <h1>Your Users</h1>
+          },
+          {
+            path:"profile",
+            element: <h1>Our Elements</h1>
+          },
+          {
+            path:"analytics",
+            element: <h1>Our Analytics</h1>
+
+          }
+      ]
+    },
+    // user dashboard 
+    {
+      path:"/user/dashboard",
+      element: isUser?<UserDashboard/>:<Login/>,
+      children:[ //extensions in the dashboard 
+          {
+            path:"todos",
+            element: <h1>Our Todos</h1>
+          },
+         
+          {
+            path:"profile",
+            element: <h1>Our Elements</h1>
+          },
+           
+      ]
     }
+
   ])
   return (
     <>

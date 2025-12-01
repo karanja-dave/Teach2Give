@@ -5,18 +5,20 @@ import storage from "redux-persist/es/storage";
 import { userApi } from "../features/auth/userAPI"
 import { persistReducer, persistStore } from "redux-persist"
 import { loginAPI } from "../features/auth/loginAPI";
-
+import userSlice from '../features/auth/userSlice'
 
 const persistConfig ={
-    key:'root', //label used to identify and update a store default is root
+    key:'todostore', //label used to identify and update a store default is root
     version:1,
-    storage
+    storage,
+    whitelist:['user'] //persists user data in the store, 'user' is the slice label we defined in the userSlice
 }
 
 // combine all reducers into 1 route 
 const rootReducer = combineReducers({
     [userApi.reducerPath]:userApi.reducer,
-    [loginAPI.reducerPath]:loginAPI.reducer
+    [loginAPI.reducerPath]:loginAPI.reducer,
+    user:userSlice
 })
 
 

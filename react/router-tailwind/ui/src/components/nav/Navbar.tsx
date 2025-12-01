@@ -34,7 +34,7 @@ export const Navbar = () => {
           className="menu menu-horizontal dropdown-content bg-base-100 rounded-box z-1 mt-3 p-2 shadow">
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/about'>About</NavLink></li>
-            <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+            <li><NavLink to='/admin/dashboard/todos'>Dashboard</NavLink></li>
         </ul>
     </div>
     <div className="navbar-end hidden md:flex">

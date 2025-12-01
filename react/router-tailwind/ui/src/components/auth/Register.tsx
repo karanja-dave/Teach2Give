@@ -49,7 +49,7 @@ export const Register = () => {
   const onSubmit:SubmitHandler<RegisterInputs>= async (data)=>{
     try {
       const response = await createUser(data).unwrap()
-      console.log("Response",response);
+      // console.log("Response",response);
       toast.success(response.message)
 
       // redirect user to verifictaion after succesfull registeration 
@@ -59,7 +59,7 @@ export const Register = () => {
         })
       },2000) //delay of 2seconds for toast to appear before redirection 
     } catch (error:any) {
-      console.log("Error",error);
+      // console.log("Error",error);
       toast.error(error.data.message)
     }
   }
