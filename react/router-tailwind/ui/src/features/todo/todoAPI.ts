@@ -10,7 +10,7 @@ export type TypeTodo={
     created_at:string,
     due_date: string,
     user_id:number,
-    isComplete:boolean
+    isCompleted:boolean
 }
 
 export const todosAPI = createApi({

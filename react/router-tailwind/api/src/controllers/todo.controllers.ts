@@ -9,7 +9,7 @@ import *as todoServices from '../services/todo.service'
 export const getTodos =async(req:Request,res:Response) =>{
     try{
         const todos=await todoServices.listTodos()
-        res.status(200).json(todos)
+        res.status(200).json({data:todos})
     } catch(error){
         res.status(500).json({error:'Internal Server Error'})
     }
