@@ -4,6 +4,7 @@ import type { RootState } from "../../app/store";
 
 
 export type TypeTodo={
+    message:string,
     todoid:number,
     todo_name:string,
     description:string,

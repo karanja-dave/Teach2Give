@@ -8,6 +8,12 @@ export const Todos = () => {
      
   return (
     <div>
+      {/* create todo button   */}
+      <div className="flex justify-center mb-3 mt-3">
+        <button className="btn bg-gray-600 text-white hover:bg-gray-700 border-gray-400 rounded-lg px-4 text-lg">
+          Create Todo
+        </button>
+      </div>
       {/* tell user to wait as todos are fetched from Db- can have a spinner instead  */}
       {todosLoading && <p>Todos Loading...</p> }
       {/* handling errors  */}
