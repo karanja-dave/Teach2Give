@@ -60,7 +60,7 @@ export const updateUser = async (req: Request, res: Response) => {
     }
 }
 
-
+// verify a user 
 export const verifyUser = async(req:Request,res:Response)=>{
     try {
         const {email,code}=req.body

@@ -35,6 +35,10 @@ CREATE TABLE Todos (
     FOREIGN KEY (user_id) REFERENCES Users(userid)
 );
 
+-- added new columns to user table 
+ALTER TABLE Todos
+ADD isCompleted BIT DEFAULT 0;
+
 -- Sample data
 INSERT INTO Todos (todo_name, description, created_at, due_date, user_id) VALUES
 ('Finish Project Plan', 'Prepare project plan for QA.', GETDATE(), '2025-10-09 00:00:00', 1),

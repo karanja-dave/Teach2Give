@@ -51,7 +51,7 @@ export const createUser = async (user: NewUser) => {
         emailTemplate.verify(user.first_name,verifcationCode)
     )
 
-    return {message:'User created successfully. Verifcation code sent to EMail.'}
+    return {message:'User created successfully. Verifcation code sent to Email.'}
 }
 
 // verification of new users 

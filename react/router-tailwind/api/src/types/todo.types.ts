@@ -6,6 +6,7 @@ export interface NewTodo {
     description:string;
     due_date: string;
     user_id:number;
+    isCompleted:boolean
 }
 
 // types for the update todo object 

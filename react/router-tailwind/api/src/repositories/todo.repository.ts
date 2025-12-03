@@ -21,8 +21,9 @@ export const createTodo = async(newtodo:NewTodo)=>{
         .input('description',newtodo.description)
         .input('due_date', newtodo.due_date)
         .input('user_id',newtodo.user_id)
+        .input('isCompleted',newtodo.isCompleted)
         // exectue SQL insert statment  to add new todo to database 
-        .query('INSERT INTO Todos (todo_name,description,due_date,user_id) VALUES (@todo_name, @description, @due_date, @user_id)')
+        .query('INSERT INTO Todos (todo_name,description,due_date,user_id,isCompleted) VALUES (@todo_name, @description, @due_date, @user_id, @isCompleted)')
         return {message:"Todo created successfully"}
 
 
