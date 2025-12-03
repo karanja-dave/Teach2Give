@@ -13,6 +13,7 @@ import { AdminDashboard } from './dashboard/AdminDashboard/content/AdminDashboar
 import { UserDashboard } from './dashboard/UserDashboard/content/UserDashboard'
 import { useSelector } from 'react-redux'
 import type { RootState } from './app/store'
+import { Todos } from './dashboard/AdminDashboard/content/Todos/Todos'
 
 function App() {
   const isAdmin = useSelector((state:RootState)=>state.user.user?.role==='admin')
@@ -50,7 +51,7 @@ function App() {
       children:[ //extensions in the dashboard 
           {
             path:"todos",
-            element: <h1>Our Todos</h1>
+            element: <Todos/>
           },
           {
             path:"users",

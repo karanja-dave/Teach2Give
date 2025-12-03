@@ -6,6 +6,7 @@ import { userApi } from "../features/auth/userAPI"
 import { persistReducer, persistStore } from "redux-persist"
 import { loginAPI } from "../features/auth/loginAPI";
 import userSlice from '../features/auth/userSlice'
+import { todosAPI } from "../features/todo/todoAPI";
 
 const persistConfig ={
     key:'todostore', //label used to identify and update a store default is root
@@ -18,6 +19,7 @@ const persistConfig ={
 const rootReducer = combineReducers({
     [userApi.reducerPath]:userApi.reducer,
     [loginAPI.reducerPath]:loginAPI.reducer,
+    [todosAPI.reducerPath]:todosAPI.reducer,
     user:userSlice
 })
 
@@ -33,6 +35,7 @@ export const store = configureStore({
     .concat(userApi.middleware)
     //concat other middlewares below
     .concat(loginAPI.middleware)
+    .concat(todosAPI.middleware)
  })
 
  export const persistedStore = persistStore(store)
