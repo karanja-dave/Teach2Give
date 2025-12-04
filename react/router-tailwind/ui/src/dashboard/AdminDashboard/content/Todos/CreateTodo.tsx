@@ -54,82 +54,91 @@ export const CreateTodo = () => {
   };
 
   return (
-    <div className="bg-gray-600 text-white w-full max-w-xs sm:max-w-lg mx-auto rounded-lg">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          {...register("todo_name")}
-          placeholder="Todo Name"
-          className="input rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
-        />
-        {errors.todo_name && (
-          <span className="text-sm text-red-700">{errors.todo_name.message}</span>
-        )}
+    <dialog id="create-todo" className="modal sm:modal-middle">
+      <div className="modal-box bg-gray-600 text-white w-full max-w-xs sm:max-w-lg mx-auto rounded-lg">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <input
+            type="text"
+            {...register("todo_name")}
+            placeholder="Todo Name"
+            className="input rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
+          />
+          {errors.todo_name && (
+            <span className="text-sm text-red-700">{errors.todo_name.message}</span>
+          )}
+  
+          <textarea
+            {...register("description")}
+            placeholder="Description"
+            className="textarea textarea-bordered w-full p-2 focus:ring-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
+          />
+          {errors.description && (
+            <span className="text-sm text-red-700">{errors.description.message}</span>
+          )}
+  
+          <input
+            type="number"
+            {...register("user_id")}
+            placeholder="User Id"
+            className="input rounded w-full p-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
+          />
+          {errors.user_id && (
+            <span className="text-sm text-red-700">{errors.user_id.message}</span>
+          )}
+  
+          <input
+            type="date"
+            {...register("due_date")}
+            className="input rounded w-full p-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
+          />
+          {errors.due_date && (
+            <span className="text-sm text-red-700">{errors.due_date.message}</span>
+          )}
+  
+          {/* handling todo  status:isCompleted (is todo completed/pending) */}
+          <div className="form-control">
+              <label className="label cursor-pointer">
+                  <span className="label-text mr-4 text-white">Status</span>
+                  <div>
+                      <label >
+                          <input type="radio" value="true"
+                              {...register("isCompleted")}
+                              className="radio radio-success"
+                          />Completed
+                      </label>
+                      <label >
+                          <input type="radio" value="false"
+                              {...register("isCompleted")}
+                              className="radio radio-warning" defaultChecked/>Pending
+                      </label>
+                      
+                  </div>
+                  
+              </label>
+          </div>
 
-        <textarea
-          {...register("description")}
-          placeholder="Description"
-          className="textarea textarea-bordered w-full p-2 focus:ring-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
-        />
-        {errors.description && (
-          <span className="text-sm text-red-700">{errors.description.message}</span>
-        )}
+          <div className="modal-action">
+            <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={isLoading}
+                >
+                {isLoading ? (
+                    <>
+                    <span className="loading loading-spinner"/>Creating...
+                    </>
+                ) : "Create"}
+            </button>
 
-        <input
-          type="number"
-          {...register("user_id")}
-          placeholder="User Id"
-          className="input rounded w-full p-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
-        />
-        {errors.user_id && (
-          <span className="text-sm text-red-700">{errors.user_id.message}</span>
-        )}
-
-        <input
-          type="date"
-          {...register("due_date")}
-          className="input rounded w-full p-2 focus:ring-blue-500 text-lg bg-white text-gray-600"
-        />
-        {errors.due_date && (
-          <span className="text-sm text-red-700">{errors.due_date.message}</span>
-        )}
-
-        {/* handling todo  status:isCompleted (is todo completed/pending) */}
-        <div className="form-control">
-            <label className="label cursor-pointer">
-                <span className="label-text mr-4 text-white">Status</span>
-                <div>
-                    <label >
-                        <input type="radio" value="true"
-                            {...register("isCompleted")}
-                            className="radio radio-success"
-                        />Completed
-                    </label>
-                    <label >
-                        <input type="radio" value="false"
-                            {...register("isCompleted")}
-                            className="radio radio-warning" defaultChecked/>Pending
-                    </label>
-                    
-                </div>
-                
-            </label>
-        </div>
-
-        <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={isLoading}
-            >
-            {isLoading ? (
-                <>
-                <span className="loading loading-spinner"/>Creating...
-                </>
-            ) : "Create"}
-        </button>
-
-       
-      </form>
-    </div>
-  );
+            <button className="btn" type="button" onClick={()=>{(document.getElementById('create-todo') as HTMLDialogElement).close();}}>
+                Close
+            </button>
+          </div>
+  
+  
+         
+        </form>
+      </div>
+    </dialog>
+    );
 };
