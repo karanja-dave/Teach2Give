@@ -15,6 +15,7 @@ export interface UpdateTodo { // the '?' means one can or not provide the values
     description?:string;
     due_date?: string;
     user_id?:number;
+    isCompleted?:boolean;
 }
 
 // types for todo items 

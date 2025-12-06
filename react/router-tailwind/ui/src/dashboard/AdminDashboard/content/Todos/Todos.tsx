@@ -2,10 +2,17 @@ import { todosAPI, type TypeTodo    } from "../../../../features/todo/todoAPI"
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { CreateTodo } from "./CreateTodo";
+import { useState } from "react";
+import { DeleteTodos } from "./DeleteTodos";
+import { UpdateTodo } from "./UpdateTodo";
 
 export const Todos = () => {
+  // use state for updating 
+  const [selectedTodo, setSelectedTodo]=useState<TypeTodo|null>(null);
+  // use state for deletetion 
+  const [todoDelete, setTodoToDelete]=useState<TypeTodo|null>(null);
     const {data: todosData, isLoading:todosLoading, error:todoError} = todosAPI.useGetTodosQuery()
-    console.log(todosData);
+    // console.log(todosData);
      
   return (
     <div>
@@ -19,6 +26,8 @@ export const Todos = () => {
       </div>
       {/* call the create todo form  */}
       <CreateTodo/> 
+      <DeleteTodos todo={todoDelete}/>
+      <UpdateTodo todo={selectedTodo}/>
       {/* tell user to wait as todos are fetched from Db- can have a spinner instead  */}
       {todosLoading && <p>Todos Loading...</p> }
       {/* handling errors  */}
@@ -57,11 +66,24 @@ export const Todos = () => {
                       }
                   </td>
                   <td className="px-4 py-2 flex">
-                    <button className="btn btn-sm btn-primary mr-4">
+                    {/* update button  */}
+                    <button className="btn btn-sm btn-primary mr-4"
+                      onClick={()=>{
+                        setSelectedTodo(todo); //passes respective todo item to be used by the child
+                        (document.getElementById('update_modal') as HTMLDialogElement).showModal();
+                      }}
+                    >
                       <FaEdit size={20}/>
                     </button>
-                    <button className="btn btn-sm btn-danger text-red-500">
+                    {/* delete button  */}
+                    <button className="btn btn-sm btn-danger text-red-500"
+                        onClick={()=>{
+                          setTodoToDelete(todo);
+                          (document.getElementById('delete_modal') as HTMLDialogElement)?.showModal();
+                        }}  
+                    >
                       <MdDeleteForever size={20}/>
+                    
                     </button>
                   </td>
                 </tr>

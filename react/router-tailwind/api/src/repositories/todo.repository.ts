@@ -58,6 +58,7 @@ export const updateTodo = async(id:number,todo:UpdateTodo)=>{
         .input('description',todo.description)
         .input('due_date',todo.due_date)
         .input('user_id',todo.user_id)
-        .query('UPDATE Todos Set todo_name=@todo_name, description=@description, due_date=@due_date, user_id=@user_id WHERE todoid=@id')
+        .input('isCompleted',todo.isCompleted)
+        .query('UPDATE Todos Set todo_name=@todo_name, description=@description, due_date=@due_date, user_id=@user_id, isCompleted=@isCompleted WHERE todoid=@id')
     return{message:'Todo updated successfully'}
 }

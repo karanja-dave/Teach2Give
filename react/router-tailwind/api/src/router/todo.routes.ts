@@ -14,12 +14,12 @@ const todoRoutes=(app:Express)=>{ //defines a fun that takes the Express app as 
     // retrieve all data  route
     app.get('/todos',adminOnly, todoController.getTodos)
     // add data route 
-    app.post('/todos', userOnly, todoController.createTodo)
+    app.post('/todos', todoController.createTodo)
     // get todo record by id 
     app.get('/todos/:id', adminOnly,todoController.getTodoById)
 
     // put -update record
-    app.put('/todos/:id', userOnly,todoController.updateTodo)
+    app.put('/todos/:id', adminOnly,todoController.updateTodo)
     // delete 
     app.delete('/todos/:id', adminOnly,todoController.deleteTodo)
 }

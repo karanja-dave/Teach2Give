@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from"../../utils/ApiDomains"; //endpoint to hit backend
 import type { RootState } from "../../app/store";
+import { UpdateTodo } from "../../dashboard/AdminDashboard/content/Todos/UpdateTodo";
 
 
 export type TypeTodo={
@@ -44,7 +45,22 @@ export const todosAPI = createApi({
             query:()=>'/todos',
             providesTags:['Todos'] //tells RTK that this endpoint provides the Todos tag, so it can be used to invalidate the cache when a new todo is created 
         }),
+        // delete todo  
+        deleteTodo:builder.mutation<{success:boolean,id:number},number>({
+            query:(id)=>({
+                url:`/todos/${id}`,
+                method:'DELETE'
+            }),
+            invalidatesTags:['Todos']
+        }),
         // update todo 
-        // delete todo 
+        updateTodo:builder.mutation<TypeTodo,Partial<TypeTodo> &{id:number}>({
+            query:(updatedTodo)=>({
+                url:`/todos/${updatedTodo.id}`,
+                method:'PUT',
+                body:updatedTodo
+            }),
+            invalidatesTags:['Todos']
+        })
     })
 })
