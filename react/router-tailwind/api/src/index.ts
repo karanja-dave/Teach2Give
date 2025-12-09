@@ -1,8 +1,8 @@
 import express from 'express'
 import todoRoutes from './router/todo.routes';
 import userRoutes from './router/user.routes';
-import { logger } from './middleware/logger';
-import { rateLimiterMiddleware } from './middleware/rateLimiter';
+// import { logger } from './middleware/logger';
+// import { rateLimiterMiddleware } from './middleware/rateLimiter';
 import cors from 'cors'
 
 const initializeApp = () => {
@@ -20,9 +20,9 @@ const initializeApp = () => {
     //middleware
     app.use(express.json()); //parse json request body
     //logger
-    app.use(rateLimiterMiddleware);
+    // app.use(rateLimiterMiddleware);
     //cors
-    app.use(logger);
+    // app.use(logger);
     //ratelimiter
 
     //register routes

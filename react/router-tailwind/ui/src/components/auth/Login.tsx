@@ -36,7 +36,7 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginInputs>=async(data)=>{
     try {
       const response = await loginUser(data).unwrap()
-      // console.log(response);
+      console.log(response);
       toast.success(response.message)
       // dispatch-sttore user info  on successful login
       dispatch(loginSuccess(response)) //performs actions of loginSuccess from userSlice where it will store the token&user

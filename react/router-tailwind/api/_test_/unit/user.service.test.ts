@@ -102,7 +102,7 @@ describe('User Service Test Suite', () => {
         expect(result).toEqual({ message: "User verified successfully" });
     });
 
-    // negative test for userRepositories.setVerificationCode
+    // negative test for verufy users: incorrect verification code 
     it("should throw error for invalid verification code", async () => {
         const mockUser = {
             email: "kemboi@gmail.com",

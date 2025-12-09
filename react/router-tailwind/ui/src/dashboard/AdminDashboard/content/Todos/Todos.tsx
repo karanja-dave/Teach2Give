@@ -11,7 +11,7 @@ export const Todos = () => {
   const [selectedTodo, setSelectedTodo]=useState<TypeTodo|null>(null);
   // use state for deletetion 
   const [todoDelete, setTodoToDelete]=useState<TypeTodo|null>(null);
-    const {data: todosData, isLoading:todosLoading, error:todoError} = todosAPI.useGetTodosQuery()
+  const {data: todosData, isLoading:todosLoading, error:todoError} = todosAPI.useGetTodosQuery()
     // console.log(todosData);
      
   return (

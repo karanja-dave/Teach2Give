@@ -14,7 +14,7 @@ import { UserDashboard } from './dashboard/UserDashboard/content/UserDashboard'
 import { useSelector } from 'react-redux'
 import type { RootState } from './app/store'
 import { Todos } from './dashboard/AdminDashboard/content/Todos/Todos'
-import { CreateTodo } from './dashboard/AdminDashboard/content/Todos/createTodo'
+import { CreateTodo } from './dashboard/AdminDashboard/content/Todos/CreateTodo'
 
 
 function App() {

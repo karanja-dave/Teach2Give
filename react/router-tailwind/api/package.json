@@ -7,7 +7,14 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "npm run build && node dist/server.js",
-    "test": "jest"
+    "test": "jest",
+    "smoke:login": "k6 run load-test/0.smoke/login.smoke.ts",
+    "smoke:todos": "k6 run load-test/0.smoke/todos.get.smoke.ts",
+    "load:todos": "k6 run load-test/1.load-testing/todos.get.load.ts",
+    "stress:todos": "k6 run load-test/2.stress/todos.get.stress.ts",
+    "soak:todos": "k6 run load-test/3.soak/todos.get.soak.ts",
+    "spike:todos": "k6 run load-test/4.spike/todos.get.spike.ts",
+    "breakpoint:todos": "k6 run load-test/5.breakpoint/todos.get.breakpoint.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +26,7 @@
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/k6": "^1.4.0",
     "@types/mocha": "^10.0.10",
     "@types/mssql": "^9.1.8",
     "@types/node": "^24.7.0",
