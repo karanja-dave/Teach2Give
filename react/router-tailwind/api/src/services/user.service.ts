@@ -2,7 +2,7 @@ import { error } from 'console';
 import * as userRepositories from '../repositories/user.repository'
 import { NewUser, UpdateUser } from '../types/user.types';
 import jwt from 'jsonwebtoken'
-import bcrpt from 'bcrypt'
+import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import { sendEmail } from '../mailer/mailer';
 import { emailTemplate } from '../mailer/emailTemplate';
@@ -24,7 +24,7 @@ export const listUsers = async () => await userRepositories.getUsers();
 export const getUser = async (id: number) => {
     // bad request
     if (isNaN(id)) {
-        throw new Error('Inavlid userid')
+        throw new Error('Invalid user Id')
     }
     return await ensureUserExists(id);
     
@@ -34,7 +34,7 @@ export const getUser = async (id: number) => {
 export const createUser = async (user: NewUser) => {
     // hash pass b4 saving 
     if(user.password){
-        user.password = await bcrpt.hash(user.password,10) //we carry out 10 salt rounds
+        user.password = await bcrypt.hash(user.password,10) //we carry out 10 salt rounds
         console.log("hashed password",user.password) //print the hashed password on console log
     }
     // save new user to DB 
@@ -79,12 +79,12 @@ export const verifyUser = async (email:string,code:string)=>{
 export const updateUser = async (id: number, user: UpdateUser) => {
     // bad request
     if (isNaN(id)) {
-        throw new Error('Inavlid userid')
+        throw new Error('Invalid user Id')
     }
     await ensureUserExists(id);
     // hash updated passwords 
     if(user.password){
-        user.password = await bcrpt.hash(user.password,10) //we carry out 10 salt rounds
+        user.password = await bcrypt.hash(user.password,10) //we carry out 10 salt rounds
         console.log("hashed password",user.password) //print the hashed password on console log
     }
     return await userRepositories.updateUser(id, user);
@@ -93,7 +93,7 @@ export const updateUser = async (id: number, user: UpdateUser) => {
 export const deleteUser = async (id: number) => {
     // bad request
     if (isNaN(id)) {
-        throw new Error('Inavlid userid')
+        throw new Error('Invalid user Id')
     }
     await ensureUserExists(id);
     return await userRepositories.deleteUser(id);
@@ -108,7 +108,7 @@ export const loginUser = async (email:string, password:string)=>{
     }
     // compare if pass is same as one in DB -
     // Nb: The logged in pass is encrypted and its hash is compared by that stored in the DB
-    const isMatch =await bcrpt.compare(password,user.password)
+    const isMatch =await bcrypt.compare(password,user.password)
     if(!isMatch){ // if hashed pass are not same
         throw new Error('Invalid credentials')
 

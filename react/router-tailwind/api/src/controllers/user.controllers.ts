@@ -19,8 +19,8 @@ export const getUserById = async (req: Request, res: Response) => {
         const user = await userServices.getUser(id);
         res.status(200).json(user);
     } catch (error: any) {
-        if (error.message === 'Inavlid userid') {
-            res.status(400).json({ message: 'Inavlid userid' })
+        if (error.message === 'Invalid user id') {
+            res.status(400).json({ message: error.message})
         } else if (error.message == 'User not found') {
             res.status(404).json({ message: 'User not found' })
         } else {
@@ -50,8 +50,8 @@ export const updateUser = async (req: Request, res: Response) => {
         const result = await userServices.updateUser(id, user);
         res.status(200).json(result);
     } catch (error: any) {
-        if (error.message === 'Inavlid userid') {
-            res.status(400).json({ message: 'Inavlid userid' })
+        if (error.message === 'Invalid user Id') {
+            res.status(400).json({ message: error.message })
         } else if (error.message == 'User not found') {
             res.status(404).json({ message: 'User not found' })
         } else {
@@ -91,8 +91,8 @@ export const deleteUser = async (req: Request, res: Response) => {
         const result = await userServices.deleteUser(id);
         res.status(200).json(result);
     } catch (error: any) {
-        if (error.message === 'Inavlid userid') {
-            res.status(400).json({ message: 'Inavlid userid' })
+        if (error.message === 'Invalid user Id') {
+            res.status(400).json({ message: error.message })
         } else if (error.message == 'User not found') {
             res.status(404).json({ message: 'User not found' })
         } else {

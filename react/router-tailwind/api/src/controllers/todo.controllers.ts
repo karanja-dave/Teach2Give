@@ -1,7 +1,6 @@
 // import packages 
 import { Request,Response } from "express"
 // load defined and exported function from other modules
-import { getPool } from "../db/config"
 import *as todoServices from '../services/todo.service'
 
 
