@@ -19,3 +19,9 @@ export function  authenticateUser(username:string,password:string):IAuthData{
     }
 }
 
+export function UserNameToLowerCase(username:string):string{
+    if(username===""){
+        throw new Error("Username cannot be Empty");
+    }
+    return username.toLowerCase();
+}
