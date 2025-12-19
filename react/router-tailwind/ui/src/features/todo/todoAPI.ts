@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from"../../utils/ApiDomains"; //endpoint to hit backend
 import type { RootState } from "../../app/store";
-import { UpdateTodo } from "../../dashboard/AdminDashboard/content/Todos/UpdateTodo";
 
 
 export type TypeTodo={

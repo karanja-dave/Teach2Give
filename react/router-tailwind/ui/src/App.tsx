@@ -55,6 +55,7 @@ function App() {
             path:"todos",
             element: <Todos/>
           },
+          // temporary route to check creation form 
           {
             path:"create-todos",
             element: <CreateTodo/>
@@ -102,7 +103,7 @@ function App() {
           error:'bg-red-500 text-white',
           success:"bg-green text-white"
         }
-        }} />
+        }} richColors />
       
     </>
   )
